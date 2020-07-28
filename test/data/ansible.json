@@ -60,7 +60,7 @@
   },
   "last_serial": 7802369,
   "releases": {
-    "1.0": [
+    "1.0.0": [
       {
         "comment_text": "",
         "digests": {
@@ -82,7 +82,7 @@
         "yanked_reason": null
       }
     ],
-    "1.1": [
+    "1.1.0": [
       {
         "comment_text": "",
         "digests": {
