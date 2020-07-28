@@ -4,15 +4,18 @@
 -- | The project data type
 module Pypi.Project
   ( PypiProject (..),
+    getReleaseSemVer
   )
 where
 
 import Data.Aeson (FromJSON, Options (fieldLabelModifier), defaultOptions, genericParseJSON, parseJSON)
 import Data.Char (isUpper, toLower)
 import qualified Data.Map as M
+import Data.Either (rights)
 import Data.Maybe (fromJust, fromMaybe, isJust)
 import Data.Text (Text)
 import Data.Text (Text)
+import Data.SemVer (Version, fromText)
 import qualified Data.Text as T
 import GHC.Generics (Generic)
 
@@ -38,6 +41,10 @@ data PypiProject
         ppReleases :: M.Map Text [PypiProjectRelease]
       }
   deriving (Eq, Show, Ord, Generic)
+
+-- Get release semver
+getReleaseSemVer :: PypiProject -> [Version]
+getReleaseSemVer = rights . map (fromText) . M.keys . ppReleases
 
 -- Convert ppiAuthorEmail to author_email
 pypiParseJSON :: String -> Options

@@ -22,6 +22,7 @@ common common-options
                      , bytestring
                      , aeson
                      , containers
+                     , semver
                      , http-client
                      , http-client-tls
                      , text

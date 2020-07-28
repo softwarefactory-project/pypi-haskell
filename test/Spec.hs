@@ -1,9 +1,11 @@
 module Main (main) where
 
-import Data.Aeson (eitherDecode)
+import Data.Aeson (eitherDecode, decode)
 import Data.ByteString.Lazy (ByteString)
 import qualified Data.ByteString.Lazy as BSL
-import Data.Maybe (isJust)
+import Data.Maybe (isJust, fromJust)
+import Data.Either (rights)
+import Data.SemVer (fromText)
 import Test.Tasty
 import Test.Tasty.HUnit
 import Pypi
@@ -23,8 +25,14 @@ encodingTests dataFile =
     [ testCase "Test ansible.json"
         $ assertBool "PypiProject is decoded"
         $ isProject (eitherDecode dataFile)
+    , testCase "Get semvers"
+        $ assertEqual "Semver are correct"
+          (getReleaseSemVer ansibleProject)
+          (rights [fromText "1.0.0", fromText "1.1.0"])
     ]
   where
     isProject :: Either String PypiProject -> Bool
     isProject (Right _) = True
     isProject (Left err) = error err
+    ansibleProject :: PypiProject
+    ansibleProject = fromJust $ decode dataFile
