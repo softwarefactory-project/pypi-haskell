@@ -1,6 +1,8 @@
 module Main (main) where
 
-import Pypi (getVersion)
+import Pypi (withClient, getProject)
 
 main :: IO ()
-main = print $ getVersion "ansible"
+main = withClient $ \client -> do
+  project <- getProject "ansible" client
+  print project
