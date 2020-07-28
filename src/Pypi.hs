@@ -9,6 +9,7 @@ module Pypi
 
     -- * Main data types
     PypiProject (..),
+    getReleaseSemVer
   )
 where
 
