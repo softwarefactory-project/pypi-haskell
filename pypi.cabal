@@ -21,6 +21,7 @@ common common-options
   build-depends:       base
                      , bytestring
                      , aeson
+                     , containers
                      , http-client
                      , http-client-tls
                      , text
@@ -50,6 +51,7 @@ library
   import:              common-options
   hs-source-dirs:      src
   exposed-modules:     Pypi
+                     , Pypi.Project
 
 executable pypi-cli
   import:              common-options
