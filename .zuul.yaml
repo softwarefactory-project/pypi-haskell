@@ -7,10 +7,10 @@
             nodeset:
               nodes:
                 - name: container
-                  label: pod-haskell-lts-16
+                  label: zuul-worker-haskell
         - hlint:
             nodeset:
               nodes:
                 - name: container
-                  label: pod-haskell-f32
+                  label: zuul-worker-haskell
     gate: *jobs
